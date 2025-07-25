@@ -33,7 +33,7 @@ exports.getAllTasks = (req, res) => {
  */
 exports.updateTask = (req, res) => {
   const { id } = req.params;
-  const { title, description, status, priority } = req.body;
+  const { title, description, status, priority, dependencies } = req.body;
 
   // Find task by ID
   const task = store.tasks.find((t) => t.id === id);
@@ -44,6 +44,14 @@ exports.updateTask = (req, res) => {
   if (description !== undefined) task.description = description;
   if (status !== undefined) task.status = status;
   if (priority !== undefined) task.priority = priority;
+
+  // Update dependencies if provided and is an array
+  if (dependencies !== undefined) {
+    if (!Array.isArray(dependencies)) {
+      return res.status(400).json({ error: "Dependencies must be an array" });
+    }
+    task.dependencies = dependencies;
+  }
 
   res.json(task);
 };

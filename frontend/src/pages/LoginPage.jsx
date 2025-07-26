@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { loginUser, createUser } from "../services/api";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");   // Input field for username
-  const [error, setError] = useState("");         // Error message
-  const [success, setSuccess] = useState("");     // Success message
+  const [username, setUsername] = useState(""); // Input field for username
+  const [error, setError] = useState(""); // Error message
+  const [success, setSuccess] = useState(""); // Success message
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -58,8 +58,8 @@ const LoginPage = () => {
         }}
         placeholder="Username"
         style={styles.input}
-          onFocus={(e) => (e.target.style.border = "1px solid #007bff")}
-          onBlur={(e) => (e.target.style.border = "1px solid #ccc")}    
+        onFocus={(e) => (e.target.style.border = "1px solid #007bff")}
+        onBlur={(e) => (e.target.style.border = "1px solid #ccc")}
       />
 
       {/* Error or success messages */}
@@ -67,8 +67,12 @@ const LoginPage = () => {
       {success && <p style={styles.success}>{success}</p>}
 
       <div style={styles.buttonGroup}>
-        <button style={styles.button} onClick={handleCreate}>Register</button>
-        <button style={styles.button} onClick={handleLogin}>Login</button>
+        <button style={styles.registerButton} onClick={handleCreate}>
+          Register
+        </button>
+        <button style={styles.loginButton} onClick={handleLogin}>
+          Login
+        </button>
       </div>
     </div>
   );
@@ -78,52 +82,67 @@ const LoginPage = () => {
 const styles = {
   container: {
     maxWidth: "400px",
-    margin: "80px auto",
-    padding: "30px",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+    margin: "100px auto",
+    padding: "40px",
+    borderRadius: "12px",
+    boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+    backgroundColor: "#ffffff",
+    fontFamily: "Segoe UI, sans-serif",
     textAlign: "center",
-    backgroundColor: "#f9f9f9",
   },
   heading: {
-    marginBottom: "20px",
-    color: "#333",
+    marginBottom: "25px",
+    color: "#222",
+    fontSize: "22px",
+    fontWeight: "600",
   },
   input: {
-  width: "100%",
-  padding: "12px",
-  marginBottom: "20px",
-  border: "1px solid #ccc",
-  borderRadius: "6px",
-  fontSize: "15px",
-  boxSizing: "border-box",
-  outline: "none",
-  transition: "border 0.3s",
-  fontFamily: "inherit",
+    width: "100%",
+    padding: "12px 14px",
+    fontSize: "15px",
+    borderRadius: "6px",
+    border: "1px solid #ccc",
+    marginBottom: "20px",
+    boxSizing: "border-box",
+    outline: "none",
+    transition: "border 0.3s",
   },
   buttonGroup: {
     display: "flex",
     justifyContent: "space-between",
-    gap: "10px",
+    gap: "12px",
   },
-  button: {
+  loginButton: {
     flex: 1,
     padding: "10px",
     backgroundColor: "#007bff",
     border: "none",
     color: "#fff",
-    borderRadius: "4px",
+    borderRadius: "6px",
+    fontSize: "15px",
+    fontWeight: "bold",
     cursor: "pointer",
-    fontSize: "16px",
+  },
+  registerButton: {
+    flex: 1,
+    padding: "10px",
+    backgroundColor: "#28a745",
+    border: "none",
+    color: "#fff",
+    borderRadius: "6px",
+    fontSize: "15px",
+    fontWeight: "bold",
+    cursor: "pointer",
   },
   error: {
-    color: "red",
-    marginBottom: "10px",
+    color: "#dc3545",
+    fontSize: "14px",
+    marginBottom: "12px",
   },
   success: {
-    color: "green",
-    marginBottom: "10px",
+    color: "#28a745",
+    fontSize: "14px",
+    marginBottom: "12px",
   },
 };
 

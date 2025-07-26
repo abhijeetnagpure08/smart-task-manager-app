@@ -27,7 +27,7 @@ const TaskForm = ({ users, existingTasks, refresh }) => {
     }
 
     const newTask = await createTask(form);
-    toast.success("Task created successfully")
+    toast.success("Task created successfully");
     if (form.assignedTo) {
       await assignTask(newTask.id, form.assignedTo);
     }
@@ -48,6 +48,7 @@ const TaskForm = ({ users, existingTasks, refresh }) => {
 
   return (
     <div style={styles.formContainer}>
+      {/* Create Task */}
       <h4 style={styles.heading}>Create Task</h4>
 
       <input
@@ -98,7 +99,7 @@ const TaskForm = ({ users, existingTasks, refresh }) => {
           ))}
         </select>
       </div>
-
+      {/* Show existing Dependencies */}
       <div style={styles.dependencies}>
         <p style={styles.sectionLabel}>Dependencies (optional):</p>
         {existingTasks.map((task) => (
@@ -125,78 +126,81 @@ const TaskForm = ({ users, existingTasks, refresh }) => {
 // Inline styles
 const styles = {
   formContainer: {
-    padding: "20px",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    backgroundColor: "#fff",
-    marginBottom: "20px",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+    padding: "25px",
+    border: "1px solid #ddd",
+    borderRadius: "10px",
+    backgroundColor: "#ffffff",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+    fontFamily: "Segoe UI, sans-serif",
   },
   heading: {
-    marginBottom: "15px",
-    fontSize: "18px",
+    marginBottom: "20px",
+    fontSize: "20px",
     color: "#333",
+    fontWeight: "600",
   },
   input: {
-  padding: "8px",
-  fontSize: "14px",
-  width: "100%",
-  marginBottom: "10px",
-  borderRadius: "4px",
-  border: "1px solid #ccc",
-  boxSizing: "border-box",
-  lineHeight: "1.5",
-  fontFamily: "inherit",
+    padding: "10px",
+    fontSize: "15px",
+    width: "100%",
+    marginBottom: "12px",
+    borderRadius: "6px",
+    border: "1px solid #ccc",
+    boxSizing: "border-box",
+    fontFamily: "inherit",
   },
   textarea: {
     padding: "10px",
-    fontSize: "14px",
+    fontSize: "15px",
     width: "100%",
     minHeight: "70px",
     marginBottom: "15px",
-    borderRadius: "4px",
+    borderRadius: "6px",
     border: "1px solid #ccc",
     resize: "vertical",
     boxSizing: "border-box",
     fontFamily: "inherit",
-    lineHeight: "1.5",
   },
   selectGroup: {
     display: "flex",
-    gap: "10px",
-    marginBottom: "15px",
+    gap: "12px",
+    marginBottom: "20px",
     flexWrap: "wrap",
   },
   select: {
-    flex: "1",
+    flex: 1,
     padding: "10px",
-    fontSize: "16px",
+    fontSize: "15px",
     border: "1px solid #ccc",
-    borderRadius: "4px",
+    borderRadius: "6px",
     minWidth: "150px",
+    backgroundColor: "#fff",
+    fontFamily: "inherit",
   },
   dependencies: {
-    marginBottom: "15px",
+    marginBottom: "20px",
   },
   sectionLabel: {
-    marginBottom: "5px",
+    marginBottom: "8px",
     fontWeight: "bold",
+    color: "#444",
   },
   checkboxLabel: {
     display: "block",
     fontSize: "14px",
-    marginBottom: "4px",
+    marginBottom: "6px",
+    color: "#333",
   },
   checkbox: {
     marginRight: "8px",
   },
   button: {
-    padding: "10px 16px",
+    padding: "12px 18px",
     fontSize: "16px",
     backgroundColor: "#007bff",
     color: "white",
     border: "none",
-    borderRadius: "4px",
+    borderRadius: "6px",
     cursor: "pointer",
     fontWeight: "bold",
   },

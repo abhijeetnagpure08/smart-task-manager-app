@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import TaskCard from "../components/TaskCard";
 import TaskForm from "../components/TaskForm";
 import FilterBar from "../components/FilterBar";
+import { toast } from "react-toastify";
 
 const HomePage = () => {
-  const [tasks, setTasks] = useState([]);        // Tasks assigned to logged-in user
-  const [users, setUsers] = useState([]);        // All users
-  const [allTasks, setAllTasks] = useState([]);  // All tasks in the system
+  const [tasks, setTasks] = useState([]); // Tasks assigned to logged-in user
+  const [users, setUsers] = useState([]); // All users
+  const [allTasks, setAllTasks] = useState([]); // All tasks in the system
   const [filter, setFilter] = useState({ priority: "", status: "" }); // Filter state
 
   const navigate = useNavigate();
@@ -43,13 +44,20 @@ const HomePage = () => {
       <div style={styles.header}>
         <h2 style={styles.title}>Welcome, {user.username}</h2>
         <div style={styles.actions}>
-          <button style={styles.button} onClick={() => {
-            localStorage.removeItem("user");
-            navigate("/");
-          }}>
+          <button
+            style={styles.logoutButton}
+            onClick={() => {
+              localStorage.removeItem("user");
+              toast.success("Logout Successfully");
+              navigate("/");
+            }}
+          >
             Logout
           </button>
-          <button style={styles.button} onClick={() => navigate("/blocked")}>
+          <button
+            style={styles.blockedButton}
+            onClick={() => navigate("/blocked")}
+          >
             Blocked Tasks
           </button>
         </div>
@@ -66,13 +74,18 @@ const HomePage = () => {
       </div>
 
       {/* Task list */}
-      <h3>My Tasks</h3>
+      <h3 style={styles.taskHeading}>My Tasks</h3>
       {filteredTasks.length === 0 && (
         <p style={styles.emptyText}>No tasks found.</p>
       )}
       <div style={styles.taskList}>
         {filteredTasks.map((t) => (
-          <TaskCard key={t.id} task={t} refresh={fetchData} existingTasks={allTasks} />
+          <TaskCard
+            key={t.id}
+            task={t}
+            refresh={fetchData}
+            existingTasks={allTasks}
+          />
         ))}
       </div>
     </div>
@@ -82,48 +95,68 @@ const HomePage = () => {
 // Basic styles
 const styles = {
   container: {
-    maxWidth: "900px",
+    maxWidth: "1000px",
     margin: "40px auto",
-    padding: "20px",
-    backgroundColor: "#f9f9f9",
-    borderRadius: "8px",
-    boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-    fontFamily: "Arial, sans-serif",
+    padding: "30px",
+    backgroundColor: "#ffffff",
+    borderRadius: "10px",
+    boxShadow: "0 4px 14px rgba(0,0,0,0.1)",
+    fontFamily: "Segoe UI, sans-serif",
   },
   header: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "20px",
+    marginBottom: "25px",
+    flexWrap: "wrap",
+    gap: "10px",
   },
   title: {
     margin: 0,
+    fontSize: "22px",
+    color: "#333",
   },
   actions: {
     display: "flex",
     gap: "10px",
   },
-  button: {
-    padding: "8px 14px",
-    backgroundColor: "#007bff",
+  logoutButton: {
+    padding: "8px 16px",
+    backgroundColor: "#dc3545",
     border: "none",
-    borderRadius: "4px",
-    color: "white",
+    borderRadius: "6px",
+    color: "#fff",
+    fontWeight: "bold",
+    cursor: "pointer",
+  },
+  blockedButton: {
+    padding: "8px 16px",
+    backgroundColor: "#6c757d",
+    border: "none",
+    borderRadius: "6px",
+    color: "#fff",
     fontWeight: "bold",
     cursor: "pointer",
   },
   section: {
-    marginBottom: "20px",
+    marginBottom: "25px",
   },
   taskList: {
     display: "flex",
     flexDirection: "column",
-    gap: "12px",
+    gap: "14px",
+  },
+  taskHeading: {
+    marginBottom: "12px",
+    color: "#444",
+    fontSize: "18px",
+    fontWeight: "600",
   },
   emptyText: {
     textAlign: "center",
     color: "#999",
     fontStyle: "italic",
+    marginTop: "10px",
   },
 };
 

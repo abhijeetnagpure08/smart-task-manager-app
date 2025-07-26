@@ -56,7 +56,7 @@ const TaskCard = ({ task, refresh, existingTasks }) => {
 
   return (
     <div style={styles.cardContainer}>
-      {isEditing ? (
+      {isEditing ? ( //Conditional Rendering to view and edit the task
         <div style={styles.editSection}>
           <input
             style={styles.input}
@@ -70,24 +70,27 @@ const TaskCard = ({ task, refresh, existingTasks }) => {
             value={editDescription}
             onChange={(e) => setEditDescription(e.target.value)}
           />
-          <select
-            style={styles.select}
-            value={editStatus}
-            onChange={(e) => setEditStatus(e.target.value)}
-          >
-            <option value="To Do">To Do</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Done">Done</option>
-          </select>
-          <select
-            style={styles.select}
-            value={editPriority}
-            onChange={(e) => setEditPriority(e.target.value)}
-          >
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
+          <div style={styles.selectGroup}>
+            <select
+              style={styles.select}
+              value={editStatus}
+              onChange={(e) => setEditStatus(e.target.value)}
+            >
+              <option value="To Do">To Do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
+            <select
+              style={styles.select}
+              value={editPriority}
+              onChange={(e) => setEditPriority(e.target.value)}
+            >
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+
           <div style={styles.dependencies}>
             <p style={styles.sectionLabel}>Dependencies:</p>
             {existingTasks
@@ -164,109 +167,115 @@ const TaskCard = ({ task, refresh, existingTasks }) => {
 
 const styles = {
   cardContainer: {
-    border: "1px solid #ccc",
-    borderRadius: "6px",
-    padding: "15px",
-    marginBottom: "10px",
+    border: "1px solid #ddd",
+    borderRadius: "10px",
+    padding: "20px",
     backgroundColor: "#fff",
-    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.05)",
+    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.05)",
+    fontFamily: "Segoe UI, sans-serif",
   },
   title: {
-    margin: "0 0 8px",
+    margin: "0 0 10px",
     fontSize: "18px",
     fontWeight: "bold",
-    color: "#333",
+    color: "#222",
   },
   text: {
-    margin: "4px 0",
-    fontSize: "14px",
-    color: "#555",
+    margin: "6px 0",
+    fontSize: "15px",
+    color: "#444",
   },
   input: {
-    padding: "8px",
+    padding: "10px",
     fontSize: "14px",
     width: "100%",
     marginBottom: "10px",
-    borderRadius: "4px",
+    borderRadius: "6px",
     border: "1px solid #ccc",
     boxSizing: "border-box",
-    lineHeight: "1.5",
-    fontFamily: "inherit", // Ensures consistent font
+    fontFamily: "inherit",
+  },
+  selectGroup: {
+    display: "flex",
+    gap: "10px",
+    marginBottom: "10px",
+    flexWrap: "wrap",
   },
   select: {
-    padding: "8px",
+    flex: 1,
+    padding: "10px",
     fontSize: "14px",
-    width: "100%",
-    marginBottom: "10px",
-    borderRadius: "4px",
     border: "1px solid #ccc",
+    borderRadius: "6px",
     backgroundColor: "#fff",
-    color: "#333",
+    fontFamily: "inherit",
+  },
+  editSection: {
+    display: "flex",
+    flexDirection: "column",
   },
   buttonGroup: {
     display: "flex",
-    gap: "8px",
+    gap: "10px",
     flexWrap: "wrap",
+    marginTop: "12px",
   },
   primaryButton: {
     backgroundColor: "#007bff",
     color: "white",
-    padding: "8px 12px",
+    padding: "10px 14px",
     border: "none",
-    borderRadius: "4px",
+    borderRadius: "6px",
     fontWeight: "bold",
     cursor: "pointer",
   },
   cancelButton: {
     backgroundColor: "#6c757d",
     color: "white",
-    padding: "8px 12px",
+    padding: "10px 14px",
     border: "none",
-    borderRadius: "4px",
+    borderRadius: "6px",
     cursor: "pointer",
   },
   editButton: {
     backgroundColor: "#ffc107",
     color: "#000",
-    padding: "8px 12px",
+    padding: "10px 14px",
     border: "none",
-    borderRadius: "4px",
+    borderRadius: "6px",
     cursor: "pointer",
   },
   deleteButton: {
     backgroundColor: "#dc3545",
     color: "white",
-    padding: "8px 12px",
+    padding: "10px 14px",
     border: "none",
-    borderRadius: "4px",
+    borderRadius: "6px",
     cursor: "pointer",
   },
   completeButton: {
     color: "white",
-    padding: "8px 12px",
+    padding: "10px 14px",
     border: "none",
-    borderRadius: "4px",
+    borderRadius: "6px",
     fontWeight: "bold",
   },
-  editSection: {
-    display: "flex",
-    flexDirection: "column",
-  },
   dependencies: {
-  marginBottom: "15px",
-},
-sectionLabel: {
-  marginBottom: "5px",
-  fontWeight: "bold",
-},
-checkboxLabel: {
-  display: "block",
-  fontSize: "14px",
-  marginBottom: "4px",
-},
-checkbox: {
-  marginRight: "8px",
-},
+    marginBottom: "10px",
+  },
+  sectionLabel: {
+    marginBottom: "6px",
+    fontWeight: "bold",
+    color: "#333",
+  },
+  checkboxLabel: {
+    display: "block",
+    fontSize: "14px",
+    marginBottom: "4px",
+  },
+  checkbox: {
+    marginRight: "8px",
+  },
 };
 
 export default TaskCard;

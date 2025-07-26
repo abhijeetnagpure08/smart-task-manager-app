@@ -90,6 +90,51 @@ PUT    /api/tasks/complete/:id # Mark task as complete
 GET    /api/tasks/user/:userId # Get tasks for specific user
 GET    /api/tasks/blocked     # Get blocked tasks
 
+## 🏗 Project Structure
+
+```bash
+smart-task-manager/
+├── frontend/
+│ ├── public/
+│ │ └── favicon.ico
+│ ├── src/
+│ │ ├── assets/ # Static assets
+│ │ ├── components/ # Reusable UI components
+│ │ │ ├── FilterBar.jsx
+│ │ │ ├── TaskCard.jsx
+│ │ │ └── TaskForm.jsx
+│ │ ├── pages/ # Page components
+│ │ │ ├── BlockedTasksPage.jsx
+│ │ │ ├── HomePage.jsx
+│ │ │ ├── LoginPage.jsx
+│ │ │ └── MyTasksPage.jsx
+│ │ ├── services/ # API services
+│ │ │ └── api.jsx
+│ │ ├── App.jsx # Main application
+│ │ ├── App.css
+│ │ ├── index.css
+│ │ └── main.jsx
+│ ├── index.html
+│ ├── package.json
+│ └── vite.config.js
+│
+└── backend/
+├── controllers/
+│ ├── taskController.js
+│ └── userController.js
+├── models/
+│ ├── taskModel.js
+├── routes/
+│ ├── taskRoutes.js
+│ └── userRoutes.js
+├── db.js # In-memory database
+├── index.js # Express server
+├── store.js 
+└── package.json
+```
+
+
+
 
 ## 🎯 Usage Guide
 
@@ -136,7 +181,7 @@ const API_BASE_URL = 'http://localhost:5000/api';
 bash
 # Backend (with nodemon for auto-restart)
 cd backend
-npm run dev
+npm run start
 
 # Frontend (with hot reload)
 cd frontend

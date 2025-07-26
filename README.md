@@ -73,22 +73,25 @@ The frontend application will run on http://localhost:5173
 
 ### User Endpoints
 
+```http
 POST   /api/users/create      # Create new user
 POST   /api/users/login       # Login user
 GET    /api/users             # Get all users
-
+```
 
 ### Task Endpoints
 
-GET    /api/tasks             # Get all tasks
-POST   /api/tasks/create      # Create new task
-PUT    /api/tasks/update/:id  # Update task
-DELETE /api/tasks/delete/:id  # Delete task
-PUT    /api/tasks/assign/:id  # Assign task to user
-PUT    /api/tasks/dependencies/:id # Add dependencies to task
-PUT    /api/tasks/complete/:id # Mark task as complete
-GET    /api/tasks/user/:userId # Get tasks for specific user
-GET    /api/tasks/blocked     # Get blocked tasks
+```http
+GET /api/tasks # Get all tasks
+POST /api/tasks/create # Create new task
+PUT /api/tasks/update/:id # Update task
+DELETE /api/tasks/delete/:id # Delete task
+PUT /api/tasks/assign/:id # Assign task to user
+PUT /api/tasks/dependencies/:id # Add dependencies to task
+PUT /api/tasks/complete/:id # Mark task as complete
+GET /api/tasks/user/:userId # Get tasks for specific user
+GET /api/tasks/blocked # Get blocked tasks
+```
 
 ## 🏗 Project Structure
 
